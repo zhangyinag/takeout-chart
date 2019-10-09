@@ -25,7 +25,7 @@
 </head>
 
 <body>
-    <div id="summary"></div>
+    <pre id="summary"></pre>
     <div id="mountNode"></div>
     <script>/*Fixing iframe window.innerHeight 0 issue in Safari*/document.body.clientHeight;</script>
     <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.g2-3.5.1/dist/g2.min.js"></script>
@@ -35,7 +35,7 @@
         const originData = generateDataFn()()
         const data = originData
         const summaryData = generateSummaryData(data)
-        document.querySelector('#summary').textContent = summaryData
+        document.querySelector('#summary').textContent = JSON.stringify(summaryData, null)
         var chart = new G2.Chart({
             container: 'mountNode',
             forceFit: true,
@@ -72,10 +72,11 @@
                 if (!map[name]) map[name] = []
                 map[name].push(v.value)
             })
-            Object.keys(key => {
+            Object.keys(map).forEach(key => {
                 let value = map[key]
-                value = value.slice(value.length - 2)
-                value = value[1] - value[0]
+                let temp = value.slice(value.length - 3)
+                value = [temp[1] - temp[0]]
+                value.push(temp[2] - temp[1])
                 map[key] = value
             })
             return map

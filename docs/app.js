@@ -18,7 +18,7 @@ function generateDataFn() {
         [2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2045, 2066, 2074, 2115, 2137, 2185, 2193, 2209, 2226, 2255, 2267], // 凡仔 29
     ]
 
-    const data = allData.map(v => v.slice(allData - max))
+    const data = allData.map(v => v.slice(allDate.length - max))
 
     function generateDate () {
         let now = new Date()
